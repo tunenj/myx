@@ -27,13 +27,14 @@ const cards: Card[] = [
 export default function TopListings() {
     return (
         <div className="relative">
-            <section className="grid grid-cols-1 md:grid-cols-3 gap-6 h-[286px]">
+            <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {cards.map((c) => (
                     <article
                         key={c.tag}
                         className="bg-white border rounded-xl border-gray-300 overflow-hidden shadow"
                     >
-                        <div className="relative h-[286px]">
+                        {/* Remove fixed height on small screens, apply it only on md+ */}
+                        <div className="relative h-[220px] sm:h-[260px] md:h-[286px]">
                             <Image
                                 src={c.image}
                                 alt={c.title}
@@ -46,14 +47,13 @@ export default function TopListings() {
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
 
                             {/* label + title + dots */}
-                            <div className="absolute bottom-0 left-0 right-0 p-4">
-                                <span className="inline-block text-[10px] uppercase tracking-wide bg-black/70 text-white px-2 py-1 rounded">
+                            <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
+                                <span className="font-medium text-white text-xs sm:text-sm uppercase">
                                     {c.tag}
                                 </span>
-                                <h4 className="mt-2 text-white font-semibold drop-shadow">
+                                <h4 className="mt-1 sm:mt-2 text-white text-sm sm:text-base font-semibold drop-shadow">
                                     {c.title}
                                 </h4>
-                                {/* Dots indicator below title */}
                                 <div className="flex justify-center gap-1.5 mt-2">
                                     {[1, 2, 3].map((_, index) => (
                                         <div
